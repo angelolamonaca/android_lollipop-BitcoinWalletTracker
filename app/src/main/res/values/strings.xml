@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name">MyFirstApplication</string>
+    <string name="app_name">Bitcoin Wallet Tracker</string>
     <string name="touch_to_start">Touch to Start</string>
     <string name="wallet_address">Wallet Address</string>
     <string name="balance">Balance</string>
     <string name="add_wallet">Add wallet</string>
     <string name="bitcoin_logo">Bitcoin Logo</string>
+    <string name="see_on_blockstream">See on Blockstream</string>
+    <string name="address">Address</string>
+    <string name="btc_balance">BTC Balance</string>
+    <string name="usd_balance">USD Balance</string>
+    <string name="confirmed_tx_count">Confirmed Tx Count</string>
 </resources>

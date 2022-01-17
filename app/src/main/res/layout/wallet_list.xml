@@ -51,20 +51,6 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/textWalletBalanceEUR"
-                    android:layout_margin="10dp"
-                    android:text="@string/balance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/textWalletBalanceCHF"
-                    android:layout_margin="10dp"
-                    android:text="@string/balance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
                     android:id="@+id/textWalletBalanceUSD"
                     android:layout_margin="10dp"
                     android:text="@string/balance"

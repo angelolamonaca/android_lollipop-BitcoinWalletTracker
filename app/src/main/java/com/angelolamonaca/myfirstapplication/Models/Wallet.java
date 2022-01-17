@@ -1,20 +1,23 @@
 package com.angelolamonaca.myfirstapplication.Models;
 
-import java.math.BigInteger;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @RequiredArgsConstructor
 public class Wallet {
+
+    @NonNull
     private String walletAddress;
-    private Double walletBalanceBTC;
-    private Double walletBalanceEUR;
-    private Double walletBalanceCHF;
-    private Double walletBalanceUSD;
+
+    private String walletBalanceBTC;
+
+    private String walletBalanceUSD;
+
+    private Integer confirmedTxCount;
+
+
 }
