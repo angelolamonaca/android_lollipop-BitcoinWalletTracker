@@ -1,14 +1,13 @@
 package com.angelolamonaca.myfirstapplication;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,9 +19,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
-
-import java.math.BigInteger;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -37,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             new Wallet("bc1q33f4wz785muluyxene9ff92zeed76klhuxtd5t", null, 300.0, 200.0, 100.0),
             new Wallet("bc1qwzgs276v929el645huxf9uql797j66lvzypz7c", null, 300.0, 200.0, 100.0)
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,16 +80,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             final String url = "https://blockstream.info/api/address/" + wallets[i].getWalletAddress();
 
-            // prepare the Request
             int finalI = i;
             JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                     response -> {
                         try {
                             JSONObject data = response.getJSONObject("chain_stats");
                             Object balanceObject = data.get("funded_txo_sum");
-                            String balance = balanceObject.toString();
-                            wallets[finalI].setWalletBalanceBTC(balance);
-                            Log.d("Debug", "Wallet address " + wallets[finalI].getWalletAddress() + " have " + balance + " satoshis");
+                            String balanceSatoshi = "00000000" + balanceObject.toString();
+                            Double balanceBtc = Double.parseDouble(balanceSatoshi.substring(0, balanceSatoshi.length() - 8) + "." + balanceSatoshi.substring(balanceSatoshi.length() - 8, balanceSatoshi.length() - 5));
+
+                            wallets[finalI].setWalletBalanceBTC(balanceBtc);
+
+                            walletAdapter.notifyDataSetChanged();
+                            Log.d("Debug", "Wallet address " + wallets[finalI].getWalletAddress() + " have " + balanceBtc + " satoshis");
                         } catch (Exception e) {
                             Log.d("Error", e.getMessage());
                         }
@@ -104,6 +104,5 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
 
         mSwipeRefreshLayout.setRefreshing(false);
-        walletAdapter.notifyDataSetChanged();
     }
 }

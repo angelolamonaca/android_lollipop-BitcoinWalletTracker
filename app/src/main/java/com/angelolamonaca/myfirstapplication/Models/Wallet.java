@@ -13,7 +13,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class Wallet {
     private String walletAddress;
-    private String walletBalanceBTC;
+    private Double walletBalanceBTC;
     private Double walletBalanceEUR;
     private Double walletBalanceCHF;
     private Double walletBalanceUSD;
