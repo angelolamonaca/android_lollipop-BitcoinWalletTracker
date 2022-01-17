@@ -1,5 +1,7 @@
 package com.angelolamonaca.myfirstapplication.Models;
 
+import java.math.BigInteger;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +13,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class Wallet {
     private String walletAddress;
-    private Double walletBalanceBTC;
+    private String walletBalanceBTC;
     private Double walletBalanceEUR;
     private Double walletBalanceCHF;
     private Double walletBalanceUSD;
