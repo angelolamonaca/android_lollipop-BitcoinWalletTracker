@@ -117,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                             df.setMaximumFractionDigits(2);
                             wallets[finalI].setWalletBalanceUSD(df.format(balanceBtc*btcPriceInUsd[0]));
 
+                            wallets[finalI].setConfirmedTxCount((Integer) data.get("tx_count"));
+
                             walletAdapter.notifyDataSetChanged();
 
                             Log.d("Debug", "Wallet address " + wallets[finalI].getWalletAddress() + " balance is " + wallets[finalI].getWalletBalanceBTC() + " bitcoin");

@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/see_on_blockstream"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/see_on_blockstream"
@@ -17,51 +17,69 @@
         app:layout_constraintVertical_bias="0.527" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/details_address_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:text="@string/address"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/see_on_blockstream"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.099"/>
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/details_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:text="@string/address"
+        android:textAlignment="center"
+        app:drawableRightCompat="@drawable/ic_baseline_content_copy_24"
+        app:layout_constraintBottom_toTopOf="@+id/see_on_blockstream"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details_address_label"
+        app:layout_constraintVertical_bias="0.024" />
+
+    <TextView
+        android:id="@+id/details_btc_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:text="@string/btc_balance"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/see_on_blockstream"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/details_address"
         app:layout_constraintVertical_bias="0.187" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/details_usd_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:text="@string/usd_balance"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/see_on_blockstream"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/details_btc_balance"
         app:layout_constraintVertical_bias="0.255" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/details_confirmed_tx_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:text="@string/confirmed_tx_count"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/see_on_blockstream"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/details_usd_balance"
         app:layout_constraintVertical_bias="0.404" />
 
 

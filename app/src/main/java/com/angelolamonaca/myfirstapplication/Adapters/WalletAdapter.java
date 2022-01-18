@@ -3,6 +3,7 @@ package com.angelolamonaca.myfirstapplication.Adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import com.angelolamonaca.myfirstapplication.Activities.WalletDetailsActivity;
 import com.angelolamonaca.myfirstapplication.Models.Wallet;
 import com.angelolamonaca.myfirstapplication.R;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder> {
 
@@ -44,6 +48,9 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
         holder.textWalletBalanceUSD.setText(wallet.getWalletBalanceUSD() + " USD");
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, WalletDetailsActivity.class);
+            Gson gson = new Gson();
+            String walletInString = gson.toJson(wallet);
+            intent.putExtra("Wallet", walletInString);
             context.startActivity(intent);
         });
     }
