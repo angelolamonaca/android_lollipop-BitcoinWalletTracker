@@ -3,7 +3,6 @@ package com.angelolamonaca.myfirstapplication.Adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.angelolamonaca.myfirstapplication.Activities.MainActivity;
 import com.angelolamonaca.myfirstapplication.Activities.WalletDetailsActivity;
-import com.angelolamonaca.myfirstapplication.Models.Wallet;
+import com.angelolamonaca.myfirstapplication.Data.Wallet;
 import com.angelolamonaca.myfirstapplication.R;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
-import org.json.JSONObject;
+import java.util.List;
 
 public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder> {
 
-    Wallet[] wallets;
+    List<Wallet> wallets;
     Context context;
 
-    public WalletAdapter(Wallet[] wallets, MainActivity activity) {
+    public WalletAdapter(List<Wallet> wallets, MainActivity activity) {
         this.wallets = wallets;
         this.context = activity;
     }
@@ -42,7 +40,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Wallet wallet = wallets[position];
+        final Wallet wallet = wallets.get(position);
         holder.textWalletAddress.setText(wallet.getWalletAddress());
         holder.textWalletBalanceBTC.setText(wallet.getWalletBalanceBTC() + " BTC");
         holder.textWalletBalanceUSD.setText(wallet.getWalletBalanceUSD() + " USD");
@@ -57,7 +55,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return wallets.length;
+        return wallets.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

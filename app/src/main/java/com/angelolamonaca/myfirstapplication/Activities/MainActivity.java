@@ -1,12 +1,14 @@
 package com.angelolamonaca.myfirstapplication.Activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
@@ -14,31 +16,32 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.angelolamonaca.myfirstapplication.Adapters.WalletAdapter;
-import com.angelolamonaca.myfirstapplication.Models.Wallet;
+import com.angelolamonaca.myfirstapplication.Data.Wallet;
+import com.angelolamonaca.myfirstapplication.Data.WalletDao;
+import com.angelolamonaca.myfirstapplication.Data.WalletDatabase;
 import com.angelolamonaca.myfirstapplication.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     SwipeRefreshLayout mSwipeRefreshLayout;
     WalletAdapter walletAdapter;
     final Double[] btcPriceInUsd = new Double[1];
 
-    Wallet[] wallets = new Wallet[]{
-            new Wallet("bc1qv6664w08cnvy9cfltw4pzzfttvwljgawtqfw42"),
-            new Wallet("bc1q5skmx82jlfkg0p9mxm2yuka2uax2tpw56w5dca"),
-            new Wallet("bc1q5s2cztswev7j9dd0rtcq92tq3cc3yxmw668hhx"),
-            new Wallet("bc1q33f4wz785muluyxene9ff92zeed76klhuxtd5t")
-    };
+    List<Wallet> wallets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        WalletDatabase walletDatabase = WalletDatabase.getInstance(getApplicationContext());
+        WalletDao walletDao = walletDatabase.walletDao();
+        wallets = walletDao.getAll();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -48,8 +51,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         recyclerView.setAdapter(walletAdapter);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        fab.setOnClickListener(view -> {
+
+            Intent intent = new Intent(this, AddWalletActivity.class);
+            this.startActivity(intent);
+        });
 
         mSwipeRefreshLayout = findViewById(R.id.pullToRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -97,32 +103,32 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private void fetchBitcoinBalances(RequestQueue queue) {
 
-        for (int i = 0; i < wallets.length; i++) {
+        for (int i = 0; i < wallets.size(); i++) {
 
-            final String blockStreamApiCallString = "https://blockstream.info/api/address/" + wallets[i].getWalletAddress();
+            final String blockStreamApiCallString = "https://blockstream.info/api/address/" + wallets.get(i).getWalletAddress();
 
             int finalI = i;
             @SuppressLint("NotifyDataSetChanged") JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, blockStreamApiCallString, null,
                     response -> {
                         try {
-                            if (finalI == wallets.length - 1)
+                            if (finalI == wallets.size() - 1)
                                 mSwipeRefreshLayout.setRefreshing(false);
                             JSONObject data = response.getJSONObject("chain_stats");
                             Object balanceObject = data.get("funded_txo_sum");
                             String balanceSatoshi = "00000000" + balanceObject.toString();
                             Double balanceBtc = Double.parseDouble(balanceSatoshi.substring(0, balanceSatoshi.length() - 8) + "." + balanceSatoshi.substring(balanceSatoshi.length() - 8, balanceSatoshi.length() - 5));
-                            wallets[finalI].setWalletBalanceBTC(balanceBtc.toString());
+                            wallets.get(finalI).setWalletBalanceBTC(balanceBtc.toString());
 
                             DecimalFormat df = new DecimalFormat("#");
                             df.setMaximumFractionDigits(2);
-                            wallets[finalI].setWalletBalanceUSD(df.format(balanceBtc*btcPriceInUsd[0]));
+                            wallets.get(finalI).setWalletBalanceUSD(df.format(balanceBtc * btcPriceInUsd[0]));
 
-                            wallets[finalI].setConfirmedTxCount((Integer) data.get("tx_count"));
+                            wallets.get(finalI).setConfirmedTxCount((Integer) data.get("tx_count"));
 
                             walletAdapter.notifyDataSetChanged();
 
-                            Log.d("Debug", "Wallet address " + wallets[finalI].getWalletAddress() + " balance is " + wallets[finalI].getWalletBalanceBTC() + " bitcoin");
-                            Log.d("Debug", "Wallet address " + wallets[finalI].getWalletAddress() + " balance is " + wallets[finalI].getWalletBalanceUSD() + " usd");
+                            Log.d("Debug", "Wallet address " + wallets.get(finalI).getWalletAddress() + " balance is " + wallets.get(finalI).getWalletBalanceBTC() + " bitcoin");
+                            Log.d("Debug", "Wallet address " + wallets.get(finalI).getWalletAddress() + " balance is " + wallets.get(finalI).getWalletBalanceUSD() + " usd");
                         } catch (Exception e) {
                             Log.d("Error", e.getMessage());
                         }
