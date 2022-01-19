@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-
             Intent intent = new Intent(this, AddWalletActivity.class);
             this.startActivity(intent);
         });

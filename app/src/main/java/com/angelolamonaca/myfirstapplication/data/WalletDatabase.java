@@ -10,12 +10,16 @@ import androidx.room.RoomDatabase;
 public abstract class WalletDatabase extends RoomDatabase {
     public abstract WalletDao walletDao();
 
-    static WalletDatabase Instance;
+    private static WalletDatabase Instance;
 
     static public WalletDatabase getInstance(Context context) {
-        return Instance != null ? Instance : Room.databaseBuilder(context, WalletDatabase.class, "wallet-database")
-                .createFromAsset("database/wallet-database.db")
-                .allowMainThreadQueries()
-                .build();
+        if (Instance != null) return Instance;
+        else {
+            Instance = Room.databaseBuilder(context, WalletDatabase.class, "wallet-database")
+                    .createFromAsset("database/wallet-database.db")
+                    .allowMainThreadQueries()
+                    .build();
+            return Instance;
+        }
     }
 }
