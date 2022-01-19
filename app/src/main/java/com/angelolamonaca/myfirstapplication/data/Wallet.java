@@ -32,5 +32,4 @@ public class Wallet {
     @Ignore
     Integer confirmedTxCount;
 
-
 }

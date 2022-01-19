@@ -1,6 +1,7 @@
 package com.angelolamonaca.myfirstapplication.activities;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,16 +10,18 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.angelolamonaca.myfirstapplication.R;
 import com.angelolamonaca.myfirstapplication.data.Wallet;
 import com.angelolamonaca.myfirstapplication.data.WalletDao;
 import com.angelolamonaca.myfirstapplication.data.WalletDatabase;
-import com.angelolamonaca.myfirstapplication.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.json.JSONObject;
 
@@ -48,10 +51,22 @@ public class AddWalletActivity extends AppCompatActivity {
                             JSONObject data = response.getJSONObject("chain_stats");
                             Object balanceObject = data.get("funded_txo_sum");
                             if (!balanceObject.toString().isEmpty()) {
-                                Wallet newWallet = new Wallet(newWalletAddress);
-                                walletDao.insertAll(newWallet);
-                                Intent intent = new Intent(this, MainActivity.class);
-                                this.startActivity(intent);
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                                builder.setMessage("Are you sure you want to add address\n" + newWalletAddress)
+                                        .setPositiveButton("yes, let's add it", (dialog, id) -> {
+                                            Wallet newWallet = new Wallet(newWalletAddress);
+                                            walletDao.insertAll(newWallet);
+                                            Intent intent = new Intent(this, MainActivity.class);
+                                            this.startActivity(intent);
+                                        })
+                                        .setNegativeButton("no, maybe later", (dialog, id) -> {
+                                            // User cancelled the dialog
+                                        });
+
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+
                             }
                         } catch (Exception e) {
                             Log.d("Error", e.getMessage());
