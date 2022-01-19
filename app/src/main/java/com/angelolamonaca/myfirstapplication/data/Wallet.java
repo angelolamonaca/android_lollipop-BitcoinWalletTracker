@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.Data;
+package com.angelolamonaca.myfirstapplication.data;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

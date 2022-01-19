@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.Data;
+package com.angelolamonaca.myfirstapplication.data;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

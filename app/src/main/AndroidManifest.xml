@@ -12,7 +12,7 @@
         android:theme="@style/Theme.MyFirstApplication"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,19 +20,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.WalletDetailsActivity"
-            android:parentActivityName=".Activities.MainActivity">
+        <activity android:name=".activities.WalletDetailsActivity"
+            android:parentActivityName=".activities.MainActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activities.MainActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
-        <activity android:name=".Activities.AddWalletActivity"
-            android:parentActivityName=".Activities.MainActivity">
+        <activity android:name=".activities.AddWalletActivity"
+            android:parentActivityName=".activities.MainActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activities.MainActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
     </application>
 

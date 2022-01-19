@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.Activities;
+package com.angelolamonaca.myfirstapplication.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -8,17 +8,16 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.angelolamonaca.myfirstapplication.Adapters.WalletAdapter;
-import com.angelolamonaca.myfirstapplication.Data.Wallet;
-import com.angelolamonaca.myfirstapplication.Data.WalletDao;
-import com.angelolamonaca.myfirstapplication.Data.WalletDatabase;
+import com.angelolamonaca.myfirstapplication.adapters.WalletAdapter;
+import com.angelolamonaca.myfirstapplication.data.Wallet;
+import com.angelolamonaca.myfirstapplication.data.WalletDao;
+import com.angelolamonaca.myfirstapplication.data.WalletDatabase;
 import com.angelolamonaca.myfirstapplication.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

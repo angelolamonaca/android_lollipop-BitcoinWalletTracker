@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.Adapters;
+package com.angelolamonaca.myfirstapplication.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.angelolamonaca.myfirstapplication.Activities.MainActivity;
-import com.angelolamonaca.myfirstapplication.Activities.WalletDetailsActivity;
-import com.angelolamonaca.myfirstapplication.Data.Wallet;
+import com.angelolamonaca.myfirstapplication.activities.MainActivity;
+import com.angelolamonaca.myfirstapplication.activities.WalletDetailsActivity;
+import com.angelolamonaca.myfirstapplication.data.Wallet;
 import com.angelolamonaca.myfirstapplication.R;
 import com.google.gson.Gson;
 

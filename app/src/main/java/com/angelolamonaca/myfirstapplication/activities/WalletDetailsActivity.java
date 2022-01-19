@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.Activities;
+package com.angelolamonaca.myfirstapplication.activities;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.angelolamonaca.myfirstapplication.Data.Wallet;
+import com.angelolamonaca.myfirstapplication.data.Wallet;
 import com.angelolamonaca.myfirstapplication.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
