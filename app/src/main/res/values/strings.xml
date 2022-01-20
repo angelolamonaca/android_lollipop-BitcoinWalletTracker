@@ -9,6 +9,15 @@
     <string name="address">Address</string>
     <string name="btc_balance">BTC Balance</string>
     <string name="usd_balance">USD Balance</string>
+    <string name="eur_balance">EUR Balance</string>
     <string name="confirmed_tx_count">Confirmed Tx Count</string>
     <string name="insert_a_bitcoin_address">Insert a bitcoin address</string>
+    <string name="sure_to_add_address">Are you sure you want to add address</string>
+    <string name="yes_add_it">yes, let\'s add it</string>
+    <string name="no_maybe_later">no, maybe later</string>
+    <string name="hide_values">Hide values</string>
+    <string name="saved_currency_key">usd</string>
+    <string name="fiat_balance">Fiat Balance</string>
+    <string name="address_copied_on_clipboard">Address copied on clipboard</string>
+    <string name="wallet">Wallet</string>
 </resources>

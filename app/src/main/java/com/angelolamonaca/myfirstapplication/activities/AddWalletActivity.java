@@ -12,6 +12,7 @@ import android.widget.EditText;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +36,9 @@ public class AddWalletActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wallet_add);
 
+        Toolbar myToolbar = findViewById(R.id.topAppBar);
+        setSupportActionBar(myToolbar);
+
         Button addWalletButton = findViewById(R.id.add_wallet_button);
         addWalletButton.setOnClickListener(view -> {
 
@@ -53,14 +57,14 @@ public class AddWalletActivity extends AppCompatActivity {
                             if (!balanceObject.toString().isEmpty()) {
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                                builder.setMessage("Are you sure you want to add address\n" + newWalletAddress)
-                                        .setPositiveButton("yes, let's add it", (dialog, id) -> {
+                                builder.setMessage(R.string.sure_to_add_address+"\n" + newWalletAddress)
+                                        .setPositiveButton(R.string.yes_add_it, (dialog, id) -> {
                                             Wallet newWallet = new Wallet(newWalletAddress);
                                             walletDao.insertAll(newWallet);
                                             Intent intent = new Intent(this, MainActivity.class);
                                             this.startActivity(intent);
                                         })
-                                        .setNegativeButton("no, maybe later", (dialog, id) -> {
+                                        .setNegativeButton(R.string.no_maybe_later, (dialog, id) -> {
                                             // User cancelled the dialog
                                         });
 

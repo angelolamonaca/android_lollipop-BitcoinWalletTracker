@@ -3,6 +3,7 @@ package com.angelolamonaca.myfirstapplication.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.angelolamonaca.myfirstapplication.R;
 import com.google.gson.Gson;
 
 import java.util.List;
+import java.util.Locale;
 
 public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder> {
 
@@ -43,7 +45,11 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
         final Wallet wallet = wallets.get(position);
         holder.textWalletAddress.setText(wallet.getWalletAddress());
         holder.textWalletBalanceBTC.setText(wallet.getWalletBalanceBTC() + " BTC");
-        holder.textWalletBalanceUSD.setText(wallet.getWalletBalanceUSD() + " USD");
+
+        SharedPreferences sharedPref =  context.getSharedPreferences("currencyMode", Context.MODE_PRIVATE);
+        String currency = sharedPref.getString(context.getString(R.string.saved_currency_key), "usd");
+
+        holder.textWalletBalanceFiat.setText(wallet.getWalletBalanceFiat() + " " + currency.toUpperCase(Locale.ROOT));
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, WalletDetailsActivity.class);
             Gson gson = new Gson();
@@ -61,13 +67,13 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textWalletAddress;
         TextView textWalletBalanceBTC;
-        TextView textWalletBalanceUSD;
+        TextView textWalletBalanceFiat;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textWalletAddress = itemView.findViewById(R.id.textWalletAddress);
             textWalletBalanceBTC = itemView.findViewById(R.id.textWalletBalanceBTC);
-            textWalletBalanceUSD = itemView.findViewById(R.id.textWalletBalanceUSD);
+            textWalletBalanceFiat = itemView.findViewById(R.id.textWalletBalanceFiat);
         }
     }
 }

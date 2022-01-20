@@ -27,7 +27,7 @@ public class Wallet {
     String walletBalanceBTC;
 
     @Ignore
-    String walletBalanceUSD;
+    String walletBalanceFiat;
 
     @Ignore
     Integer confirmedTxCount;

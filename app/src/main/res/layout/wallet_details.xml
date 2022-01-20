@@ -4,30 +4,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <Button
         android:id="@+id/see_on_blockstream"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/see_on_blockstream"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.955" />
 
     <TextView
         android:id="@+id/details_address_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:text="@string/address"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/see_on_blockstream"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.099"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
         android:id="@+id/details_address"
@@ -41,46 +60,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/details_address_label"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.137" />
 
     <TextView
         android:id="@+id/details_btc_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:text="@string/btc_balance"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/see_on_blockstream"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/details_address"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintVertical_bias="0.147" />
 
     <TextView
-        android:id="@+id/details_usd_balance"
+        android:id="@+id/details_fiat_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/fiat_balance"
         android:textAlignment="center"
-        android:text="@string/usd_balance"
         app:layout_constraintBottom_toTopOf="@+id/see_on_blockstream"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/details_btc_balance"
-        app:layout_constraintVertical_bias="0.255" />
+        app:layout_constraintVertical_bias="0.245" />
 
     <TextView
         android:id="@+id/details_confirmed_tx_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:text="@string/confirmed_tx_count"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/see_on_blockstream"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details_usd_balance"
-        app:layout_constraintVertical_bias="0.404" />
+        app:layout_constraintTop_toBottomOf="@+id/details_fiat_balance"
+        app:layout_constraintVertical_bias="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
