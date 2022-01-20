@@ -46,14 +46,14 @@
                 <TextView
                     android:id="@+id/textWalletBalanceBTC"
                     android:layout_margin="10dp"
-                    android:text="@string/balance"
+                    android:text="@string/loading_btc_balance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <TextView
                     android:id="@+id/textWalletBalanceFiat"
                     android:layout_margin="10dp"
-                    android:text="@string/balance"
+                    android:text="@string/loading_fiat_balance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

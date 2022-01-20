@@ -20,4 +20,6 @@
     <string name="fiat_balance">Fiat Balance</string>
     <string name="address_copied_on_clipboard">Address copied on clipboard</string>
     <string name="wallet">Wallet</string>
+    <string name="loading_btc_balance">Loading BTC Balance …</string>
+    <string name="loading_fiat_balance">Loading Fiat Balance …</string>
 </resources>

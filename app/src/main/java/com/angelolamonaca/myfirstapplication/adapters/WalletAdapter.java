@@ -12,10 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.angelolamonaca.myfirstapplication.R;
 import com.angelolamonaca.myfirstapplication.activities.MainActivity;
 import com.angelolamonaca.myfirstapplication.activities.WalletDetailsActivity;
 import com.angelolamonaca.myfirstapplication.data.Wallet;
-import com.angelolamonaca.myfirstapplication.R;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -44,12 +44,15 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Wallet wallet = wallets.get(position);
         holder.textWalletAddress.setText(wallet.getWalletAddress());
-        holder.textWalletBalanceBTC.setText(wallet.getWalletBalanceBTC() + " BTC");
 
-        SharedPreferences sharedPref =  context.getSharedPreferences("currencyMode", Context.MODE_PRIVATE);
+        if (wallet.getWalletBalanceBTC() != null)
+            holder.textWalletBalanceBTC.setText(wallet.getWalletBalanceBTC() + " BTC");
+
+        SharedPreferences sharedPref = context.getSharedPreferences("currencyMode", Context.MODE_PRIVATE);
         String currency = sharedPref.getString(context.getString(R.string.saved_currency_key), "usd");
 
-        holder.textWalletBalanceFiat.setText(wallet.getWalletBalanceFiat() + " " + currency.toUpperCase(Locale.ROOT));
+        if (wallet.getWalletBalanceFiat() != null)
+            holder.textWalletBalanceFiat.setText(wallet.getWalletBalanceFiat() + " " + currency.toUpperCase(Locale.ROOT));
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, WalletDetailsActivity.class);
             Gson gson = new Gson();
