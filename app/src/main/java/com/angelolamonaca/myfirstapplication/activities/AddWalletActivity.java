@@ -1,7 +1,6 @@
 package com.angelolamonaca.myfirstapplication.activities;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,12 +21,10 @@ import com.angelolamonaca.myfirstapplication.R;
 import com.angelolamonaca.myfirstapplication.data.Wallet;
 import com.angelolamonaca.myfirstapplication.data.WalletDao;
 import com.angelolamonaca.myfirstapplication.data.WalletDatabase;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.json.JSONObject;
 
 public class AddWalletActivity extends AppCompatActivity {
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
@@ -57,7 +54,7 @@ public class AddWalletActivity extends AppCompatActivity {
                             if (!balanceObject.toString().isEmpty()) {
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                                builder.setMessage(R.string.sure_to_add_address+"\n" + newWalletAddress)
+                                builder.setMessage(R.string.sure_to_add_address + "\n" + newWalletAddress)
                                         .setPositiveButton(R.string.yes_add_it, (dialog, id) -> {
                                             Wallet newWallet = new Wallet(newWalletAddress);
                                             walletDao.insertAll(newWallet);
@@ -84,4 +81,5 @@ public class AddWalletActivity extends AppCompatActivity {
         });
 
     }
+
 }

@@ -14,15 +14,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.angelolamonaca.myfirstapplication.data.Wallet;
 import com.angelolamonaca.myfirstapplication.R;
+import com.angelolamonaca.myfirstapplication.data.Wallet;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.util.Locale;
 
 public class WalletDetailsActivity extends AppCompatActivity {
-
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -51,14 +50,15 @@ public class WalletDetailsActivity extends AppCompatActivity {
         TextView detailsBtcBalance = findViewById(R.id.details_btc_balance);
         detailsBtcBalance.setText("BTC Balance\n" + wallet.getWalletBalanceBTC());
         TextView detailsUsdBalance = findViewById(R.id.details_fiat_balance);
-        detailsUsdBalance.setText(currency.toUpperCase(Locale.ROOT) + " " + getString(R.string.balance)+"\n" + wallet.getWalletBalanceFiat());
+        detailsUsdBalance.setText(currency.toUpperCase(Locale.ROOT) + " " + getString(R.string.balance) + "\n" + wallet.getWalletBalanceFiat());
         TextView detailsTxCount = findViewById(R.id.details_confirmed_tx_count);
         detailsTxCount.setText("Confirmed Tx Count\n" + wallet.getConfirmedTxCount());
         Button seeOnBlockstreamButton = findViewById(R.id.see_on_blockstream);
         seeOnBlockstreamButton.setOnClickListener(view -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://blockstream.info/address/"+wallet.getWalletAddress()));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://blockstream.info/address/" + wallet.getWalletAddress()));
             startActivity(browserIntent);
         });
 
     }
+
 }
