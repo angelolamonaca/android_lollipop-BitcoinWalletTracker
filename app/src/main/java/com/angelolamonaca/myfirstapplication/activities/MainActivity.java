@@ -67,13 +67,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
