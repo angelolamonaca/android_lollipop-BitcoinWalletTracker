@@ -49,9 +49,20 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/add_wallet_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
+        app:layout_constraintVertical_bias="0.296"
         tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/add_wallet_error"
+        android:textColor="@color/red_500"
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/add_wallet_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_wallet_address" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

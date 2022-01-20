@@ -46,7 +46,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
         holder.textWalletAddress.setText(wallet.getWalletAddress());
 
         if (wallet.getWalletBalanceBTC() != null)
-            holder.textWalletBalanceBTC.setText(wallet.getWalletBalanceBTC() + " BTC");
+            holder.textWalletBalanceBTC.setText(wallet.getWalletBalanceBTC() + context.getString(R.string.btc));
 
         SharedPreferences sharedPref = context.getSharedPreferences("currencyMode", Context.MODE_PRIVATE);
         String currency = sharedPref.getString(context.getString(R.string.saved_currency_key), "usd");

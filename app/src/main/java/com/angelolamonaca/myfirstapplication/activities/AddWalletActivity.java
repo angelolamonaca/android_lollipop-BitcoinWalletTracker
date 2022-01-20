@@ -2,11 +2,13 @@ package com.angelolamonaca.myfirstapplication.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -54,12 +56,19 @@ public class AddWalletActivity extends AppCompatActivity {
                             if (!balanceObject.toString().isEmpty()) {
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                                builder.setMessage(R.string.sure_to_add_address + "\n" + newWalletAddress)
+                                builder.setTitle("Add a wallet")
+                                        .setMessage(getString(R.string.sure_to_add_address) + "\n" + newWalletAddress)
                                         .setPositiveButton(R.string.yes_add_it, (dialog, id) -> {
                                             Wallet newWallet = new Wallet(newWalletAddress);
-                                            walletDao.insertAll(newWallet);
-                                            Intent intent = new Intent(this, MainActivity.class);
-                                            this.startActivity(intent);
+                                            try {
+                                                walletDao.insertAll(newWallet);
+                                                Intent intent = new Intent(this, MainActivity.class);
+                                                this.startActivity(intent);
+                                            } catch (SQLiteConstraintException e) {
+                                                Log.e("Error.SQLite", e.getMessage());
+                                                TextView addWalletErrorTextView = findViewById(R.id.add_wallet_error);
+                                                addWalletErrorTextView.setText(getString(R.string.this_address_is_already_on_your_list));
+                                            }
                                         })
                                         .setNegativeButton(R.string.no_maybe_later, (dialog, id) -> {
                                             // User cancelled the dialog
@@ -73,7 +82,11 @@ public class AddWalletActivity extends AppCompatActivity {
                             Log.d("Error", e.getMessage());
                         }
                     },
-                    error -> Log.d("Error.Response", error.toString())
+                    error -> {
+                        Log.d("Error.Response", error.toString());
+                        TextView addWalletErrorTextView = findViewById(R.id.add_wallet_error);
+                        addWalletErrorTextView.setText(getString(R.string.address_should_have_one_satoshi));
+                    }
             );
             queue.add(getRequest);
 
