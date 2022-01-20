@@ -16,7 +16,7 @@
     <string name="yes_add_it">yes, let\'s add it</string>
     <string name="no_maybe_later">no, maybe later</string>
     <string name="hide_values">Hide values</string>
-    <string name="saved_currency_key">usd</string>
+    <string name="saved_currency_key">currency</string>
     <string name="fiat_balance">Fiat Balance</string>
     <string name="address_copied_on_clipboard">Address copied on clipboard</string>
     <string name="wallet">Wallet</string>

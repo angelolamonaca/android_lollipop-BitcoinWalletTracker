@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedPref.edit();
-            String newCurrency = isChecked? "eur" : "usd";
+            String newCurrency = isChecked ? "eur" : "usd";
             if (isChecked)
                 editor.putString(getString(R.string.saved_currency_key), newCurrency);
             else
@@ -134,14 +133,20 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         SharedPreferences sharedPref = getSharedPreferences("currencyMode", Context.MODE_PRIVATE);
         String currency = sharedPref.getString(getString(R.string.saved_currency_key), "usd");
 
-        final String coinMarketCapApiCallString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?CMC_PRO_API_KEY=feb0a658-b7bc-421f-89bd-b27209e89b77&id=1&convert=" + currency + "&skip_invalid=true";
+        final String coinMarketCapApiCallString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?" +
+                "CMC_PRO_API_KEY=feb0a658-b7bc-421f-89bd-b27209e89b77&" +
+                "id=1&convert=" + currency + "&" +
+                "skip_invalid=true";
         JsonObjectRequest cmcGetRequest = new JsonObjectRequest(Request.Method.GET, coinMarketCapApiCallString, null,
                 response -> {
                     try {
-                        JSONObject usdQuote = response.getJSONObject("data").getJSONObject("1").getJSONObject("quote").getJSONObject(currency.toUpperCase(Locale.ROOT));
+                        JSONObject usdQuote = response.getJSONObject("data")
+                                .getJSONObject("1")
+                                .getJSONObject("quote")
+                                .getJSONObject(currency.toUpperCase(Locale.ROOT));
                         btcPrice[0] = (Double) usdQuote.get("price");
                         fetchBitcoinBalances(queue);
-                        Log.d("BTC price in "+currency, btcPrice[0].toString());
+                        Log.d("BTC price in " + currency, btcPrice[0].toString());
                     } catch (Exception e) {
                         Log.d("Error", e.getMessage());
                     }
@@ -155,10 +160,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         for (int i = 0; i < wallets.size(); i++) {
 
-            final String blockStreamApiCallString = "https://blockstream.info/api/address/" + wallets.get(i).getWalletAddress();
+            final String blockStreamApiCallString = "https://blockstream.info/api/address/" +
+                    wallets.get(i).getWalletAddress();
 
             int finalI = i;
-            @SuppressLint("NotifyDataSetChanged") JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, blockStreamApiCallString, null,
+            @SuppressLint("NotifyDataSetChanged")
+            JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET,
+                    blockStreamApiCallString,
+                    null,
                     response -> {
                         try {
                             if (finalI == wallets.size() - 1)
@@ -166,7 +175,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                             JSONObject data = response.getJSONObject("chain_stats");
                             Object balanceObject = data.get("funded_txo_sum");
                             String balanceSatoshi = "00000000" + balanceObject.toString();
-                            Double balanceBtc = Double.parseDouble(balanceSatoshi.substring(0, balanceSatoshi.length() - 8) + "." + balanceSatoshi.substring(balanceSatoshi.length() - 8, balanceSatoshi.length() - 5));
+                            Double balanceBtc = Double.parseDouble(
+                                    balanceSatoshi
+                                            .substring(0, balanceSatoshi.length() - 8) +
+                                            "." +
+                                            balanceSatoshi
+                                                    .substring(balanceSatoshi.length() - 8, balanceSatoshi.length() - 5)
+                            );
                             wallets.get(finalI).setWalletBalanceBTC(balanceBtc.toString());
 
                             DecimalFormat df = new DecimalFormat("#");
@@ -177,8 +192,18 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
                             walletAdapter.notifyDataSetChanged();
 
-                            Log.d("Debug", "Wallet address " + wallets.get(finalI).getWalletAddress() + " balance is " + wallets.get(finalI).getWalletBalanceBTC() + " bitcoin");
-                            Log.d("Debug", "Wallet address " + wallets.get(finalI).getWalletAddress() + " balance is " + wallets.get(finalI).getWalletBalanceFiat() + " usd");
+                            Log.d("Debug", "Wallet address " +
+                                    wallets.get(finalI).getWalletAddress() +
+                                    " balance is " +
+                                    wallets.get(finalI).getWalletBalanceBTC() +
+                                    " bitcoin");
+
+                            Log.d("Debug", "Wallet address " +
+                                    wallets.get(finalI).getWalletAddress() +
+                                    " balance is " +
+                                    wallets.get(finalI).getWalletBalanceFiat() +
+                                    " usd");
+
                         } catch (Exception e) {
                             Log.d("Error", e.getMessage());
                         }
