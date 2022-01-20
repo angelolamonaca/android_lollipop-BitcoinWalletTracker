@@ -24,6 +24,7 @@ import com.angelolamonaca.myfirstapplication.data.Wallet;
 import com.angelolamonaca.myfirstapplication.data.WalletDao;
 import com.angelolamonaca.myfirstapplication.data.WalletDatabase;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AddWalletActivity extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class AddWalletActivity extends AppCompatActivity {
                             if (!balanceObject.toString().isEmpty()) {
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                                builder.setTitle("Add a wallet")
+                                builder.setTitle(getString(R.string.add_a_wallet))
                                         .setMessage(getString(R.string.sure_to_add_address) + "\n" + newWalletAddress)
                                         .setPositiveButton(R.string.yes_add_it, (dialog, id) -> {
                                             Wallet newWallet = new Wallet(newWalletAddress);
@@ -78,8 +79,8 @@ public class AddWalletActivity extends AppCompatActivity {
                                 alertDialog.show();
 
                             }
-                        } catch (Exception e) {
-                            Log.d("Error", e.getMessage());
+                        } catch (JSONException e) {
+                            Log.d("Error.JSON", e.getMessage());
                         }
                     },
                     error -> {

@@ -45,15 +45,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         getMenuInflater().inflate(R.menu.main_menu, menu);
         MenuItem item = menu.findItem(R.id.app_bar_switch);
         SharedPreferences sharedPref = getSharedPreferences("currencyMode", Context.MODE_PRIVATE);
-        String currency = sharedPref.getString(getString(R.string.saved_currency_key), "usd");
+        String currency = sharedPref.getString(getString(R.string.saved_currency_key), getString(R.string.usd));
 
         switchMaterial = item.getActionView().findViewById(R.id.actionBarCurrencySwitch);
-        switchMaterial.setChecked(currency.equals("eur"));
+        switchMaterial.setChecked(currency.equals(getString(R.string.eur)));
         switchMaterial.setText(currency.toUpperCase(Locale.ROOT));
 
         switchMaterial.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences.Editor editor = sharedPref.edit();
-            String newCurrency = isChecked ? "eur" : "usd";
+            String newCurrency = isChecked ? getString(R.string.eur) : getString(R.string.usd);
             if (isChecked)
                 editor.putString(getString(R.string.saved_currency_key), newCurrency);
             else
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void fetchBitcoinPrice(RequestQueue queue) {
 
         SharedPreferences sharedPref = getSharedPreferences("currencyMode", Context.MODE_PRIVATE);
-        String currency = sharedPref.getString(getString(R.string.saved_currency_key), "usd");
+        String currency = sharedPref.getString(getString(R.string.saved_currency_key), getString(R.string.usd));
 
         final String coinMarketCapApiCallString = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?" +
                 "CMC_PRO_API_KEY=feb0a658-b7bc-421f-89bd-b27209e89b77&" +

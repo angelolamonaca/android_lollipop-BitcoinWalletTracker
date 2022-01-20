@@ -33,7 +33,7 @@ public class WalletDetailsActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         SharedPreferences sharedPref = getSharedPreferences("currencyMode", Context.MODE_PRIVATE);
-        String currency = sharedPref.getString(getString(R.string.saved_currency_key), "usd");
+        String currency = sharedPref.getString(getString(R.string.saved_currency_key), getString(R.string.usd));
 
         Gson gson = new Gson();
         Wallet wallet = gson.fromJson(getIntent().getSerializableExtra(getString(R.string.wallet)).toString(), Wallet.class);
