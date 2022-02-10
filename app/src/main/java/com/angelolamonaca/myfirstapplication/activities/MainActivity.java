@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.activities;
+package com.angelolamonaca.bitcoinWalletTracker.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,11 +19,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.angelolamonaca.myfirstapplication.R;
-import com.angelolamonaca.myfirstapplication.adapters.WalletAdapter;
-import com.angelolamonaca.myfirstapplication.data.Wallet;
-import com.angelolamonaca.myfirstapplication.data.WalletDao;
-import com.angelolamonaca.myfirstapplication.data.WalletDatabase;
+import com.angelolamonaca.bitcoinWalletTracker.R;
+import com.angelolamonaca.bitcoinWalletTracker.adapters.WalletAdapter;
+import com.angelolamonaca.bitcoinWalletTracker.data.Wallet;
+import com.angelolamonaca.bitcoinWalletTracker.data.WalletDao;
+import com.angelolamonaca.bitcoinWalletTracker.data.WalletDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 

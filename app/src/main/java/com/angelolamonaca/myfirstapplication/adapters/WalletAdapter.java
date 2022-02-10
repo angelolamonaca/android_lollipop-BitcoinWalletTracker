@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.adapters;
+package com.angelolamonaca.bitcoinWalletTracker.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,10 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.angelolamonaca.myfirstapplication.R;
-import com.angelolamonaca.myfirstapplication.activities.MainActivity;
-import com.angelolamonaca.myfirstapplication.activities.WalletDetailsActivity;
-import com.angelolamonaca.myfirstapplication.data.Wallet;
+import com.angelolamonaca.bitcoinWalletTracker.R;
+import com.angelolamonaca.bitcoinWalletTracker.activities.MainActivity;
+import com.angelolamonaca.bitcoinWalletTracker.activities.WalletDetailsActivity;
+import com.angelolamonaca.bitcoinWalletTracker.data.Wallet;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -42,6 +42,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        System.out.println("Bindijng" + position);
         final Wallet wallet = wallets.get(position);
         holder.textWalletAddress.setText(wallet.getWalletAddress());
 

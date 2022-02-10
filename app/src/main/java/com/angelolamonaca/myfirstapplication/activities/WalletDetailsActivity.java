@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.activities;
+package com.angelolamonaca.bitcoinWalletTracker.activities;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
@@ -14,8 +14,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.angelolamonaca.myfirstapplication.R;
-import com.angelolamonaca.myfirstapplication.data.Wallet;
+import com.angelolamonaca.bitcoinWalletTracker.R;
+import com.angelolamonaca.bitcoinWalletTracker.data.Wallet;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 

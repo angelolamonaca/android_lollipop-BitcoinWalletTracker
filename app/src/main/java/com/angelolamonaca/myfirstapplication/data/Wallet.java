@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.data;
+package com.angelolamonaca.bitcoinWalletTracker.data;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

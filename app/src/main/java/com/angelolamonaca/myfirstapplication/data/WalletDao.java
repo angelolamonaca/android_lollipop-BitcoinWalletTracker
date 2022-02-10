@@ -1,4 +1,4 @@
-package com.angelolamonaca.myfirstapplication.data;
+package com.angelolamonaca.bitcoinWalletTracker.data;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
