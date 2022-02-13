@@ -28,4 +28,8 @@
     <string name="btc"> BTC</string>
     <string name="usd">usd</string>
     <string name="eur">eur</string>
+    <string name="content_description">Content</string>
+    <string name="search">Search</string>
+    <string name="content_description_more">content description more</string>
+    <string name="more">more</string>
 </resources>

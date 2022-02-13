@@ -42,7 +42,6 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.ViewHolder
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        System.out.println("Bindijng" + position);
         final Wallet wallet = wallets.get(position);
         holder.textWalletAddress.setText(wallet.getWalletAddress());
 
